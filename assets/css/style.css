@@ -1,0 +1,130 @@
+*{
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.container{
+  padding: 20px 25px;
+}
+.container-fluid{
+  margin: 0px;
+  padding: 5px 10px;
+}
+.text-center{
+  text-align: center;
+}
+header{
+  background-color: rgb(46, 177, 250);
+  max-height: 100px;
+}
+header a{
+  color: #fff;
+  text-decoration: none;
+}
+.clear{
+  clear: both;
+}
+.header{
+  width: 50% !important;
+  height: auto;
+  display: inline-block;
+  margin: 0;
+  color: #fff;
+}
+.header.judul{
+  float: left;
+  text-align: left;
+}
+.header.judul h1{
+  display: inline;
+}
+.header.keterangan{
+  float: right;
+  text-align: right;
+}
+
+.row .col-3, .row .col-9{
+  float: left;
+}
+
+.row .col-3{
+  width: 25%;
+  display: block;
+}
+.row .col-9{
+  width: 75%;
+  display: block;
+}
+#nav-left-title{
+  color: #656565;
+  background-color: #ddd;
+  padding: 10px 15px;
+  margin: 5px 10px;
+}
+#nav-left{
+  background-color: transparent;
+  margin: 0px;
+  padding: 5px 10px;
+}
+#nav-left ul{
+  background-color: #f5f5f5;
+  list-style: none;
+  display: list-item;
+}
+#nav-left ul li{
+  list-style: none;
+  display: list-item;
+  padding: 0;
+  margin: 0;
+}
+#nav-left ul li a, #nav-left ul .dropdown-content a{
+  display: block;
+  padding: 5px 10px;
+  margin: 0;
+  text-transform: capitalize;
+  background-color: #f5f5f5;
+  color: #rgb(46, 177, 250);
+  text-decoration: none;
+  transition: all .3s ease-in-out;
+}
+#nav-left ul .dropdown-content a{
+  font-size: 95%;
+  padding-left: 15px;
+}
+#nav-left ul li a:hover,
+#nav-left ul li a:active,
+#nav-left ul li a:focus{
+  background-color: rgb(46, 177, 250);
+  color: #f5f5f5;
+}
+#nav-left li.dropdown{
+  transition: all .5s ease-in-out;
+  position: relative;
+}
+#nav-left li.dropdown:after{
+  content: "+";
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+#nav-left li.dropdown ul.dropdown-content{
+  display: none;
+}
+
+.dropdown-content:target{
+  display: block !important;
+}
+
+.btn{
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+.btn-logout{
+  color: #fff;
+  background-color: #e74b08;
+}
+.btn-logout:hover, .btn-logout:active, .btn-logout:focus{
+  background-color: #d92e00;
+}

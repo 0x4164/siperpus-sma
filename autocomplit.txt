@@ -1,0 +1,53 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Demo Jquery UI autocomplete Candralab Coding Studio</title>
+    <link rel="stylesheet"
+    href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+
+    <script>
+
+/*autocomplete muncul setelah user mengetikan minimal2 karakter */
+    $(function() {
+        $( "#negara" ).autocomplete({
+         source: "sourcedata.php",
+           minLength:2,
+        });
+    });
+    </script>
+</head>
+<body>
+
+<div class="ui-widget">
+    <label for="negara">Negara: </label>
+    <input id="negara"  />
+</div>
+
+</body>
+</html>
+<?php
+//connect to your database
+  mysql_connect("localhost","root","");
+  mysql_select_db("world");
+//harus selalu gunakan variabel term saat memakai autocomplete,
+//jika variable term tidak bisa, gunakan variabel q
+$term = trim(strip_tags($_GET['term']));
+
+$qstring = "SELECT Code,Name FROM country WHERE Name LIKE '".$term."%'";
+//query database untuk mengecek tabel Country
+$result = mysql_query($qstring);
+
+while ($row = mysql_fetch_array($result))
+{
+    $row['value']=htmlentities(stripslashes($row['Name']));
+    $row['id']=(int)$row['Code'];
+//buat array yang nantinya akan di konversi ke json
+    $row_set[] = $row;
+}
+//data hasil query yang dikirim kembali dalam format json
+echo json_encode($row_set);
+?>
