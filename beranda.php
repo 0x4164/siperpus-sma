@@ -1,8 +1,11 @@
 <?php
+
 $page="beranda";
 //query peng keluar -> update pengunjung set keluar=now() where idpeng=1
 //query trigger peng masuk -> insert into pengunjung (namap,nopendaftaran) select nama,nopendaftaran from anggota where nopendaftaran=11954
 include_once('database.php');
+
+if(!isset($_GET['hal'])){
 ?>
 <!-- <h1 class="text-center">== Beranda == Pengunjung ==</h1> -->
 <!-- <div class="container-fluid row"> -->
@@ -21,7 +24,7 @@ include_once('database.php');
     <h3>Pengunjung </h3>
   </div>
   <div class="col-lg-5">
-    <h5><a href="statistikp.php">Statistik Pengunjung</a></h5>
+    <h5><a href="index.php?hal=statistik">Statistik Pengunjung</a></h5>
   </div>
   <div class="col-lg-2">
     <h5 id="waktu"></h5>
@@ -32,30 +35,11 @@ include_once('database.php');
   <div class="col-lg-4">
     <div class="panel panel-default">
       <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#panggota1">Cari Pengunjung</a></li>
-      </ul>
-      <div class="panel-body">
-        <div id="panggota1" class="tab-pane in active panel-body">
-            <form role="form" class="" action="pengunjung.php" method="post" autocomplete="on">
-              <div class="form-group">
-                <label class="control-label" for="nama">Nama:</label>
-                <input type="text" class="form-control" name="namap" value="">
-              </div>
-              <input type="hidden" name="proses" value="cari_pengunjung">
-              <button type="submit" class="col-lg-offset-9 btn btn-default">Cari</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-4">
-    <div class="panel panel-default">
-      <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#pmasuk">Pengunjung Masuk</a></li>
-        <li ><a data-toggle="tab" href="#tamu">Tamu</a></li>
+        <li ><a data-toggle="tab" href="#pmasuk">Pengunjung Masuk</a></li>
+        <li class="active"><a data-toggle="tab" href="#tamu">Tamu</a></li>
       </ul>
       <div class="tab-content">
-        <div id="pmasuk" class="tab-pane in active panel-body">
+        <div id="pmasuk" class="tab-pane panel-body">
           <?php //echo form_open('aplikasi/proses_pengunjung_masuk','class="form-horizontal"')?>
           <form role="form" action="pengunjung.php" method="post">
           <div class="form-group"><!--ui-widget-->
@@ -77,7 +61,7 @@ include_once('database.php');
           <button type="submit" class="col-lg-offset-9 btn btn-success">Masuk</button>
           </form>
         </div>
-        <div id="tamu" class="tab-pane panel-body">
+        <div id="tamu" class="tab-pane in active panel-body">
           <?php //echo form_open('aplikasi/proses_pengunjung_masuk','class="form-horizontal"')?>
           <form role="form" action="pengunjung.php" method="post">
           <div class="form-group">
@@ -86,34 +70,6 @@ include_once('database.php');
             <input type="hidden" name="proses" value="pengunjung_masuk_b">
           </div>
           <button type="submit" class="col-lg-offset-9 btn btn-success">Masuk</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-4">
-    <div class="panel panel-default">
-      <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#panggota3">Pengunjung Keluar</a></li>
-      </ul>
-      <div class="tab-content">
-        <div id="panggota3" class="tab-pane in active panel-body">
-          <?php //echo form_open('aplikasi/proses_pengunjung_masuk','class="form-horizontal"')?>
-          <form class="" action="pengunjung.php" method="post">
-            <label class="control-label" for="nama">No Daftar:</label>
-              <div class="form-group">
-              <select name="nop" class="form-control" id="sel1">
-                <?php
-                $query="select nopendaftaran,nama from anggota";
-                $eksekusi=$db->query($query);
-                while($data=$eksekusi->fetch(PDO::FETCH_ASSOC)){
-                  echo "<option>".$data['nopendaftaran']; ?> <?php echo $data['nama']."</option>";
-                }
-                ?>
-              </select>
-              </div>
-          <input type="hidden" class="col-lg-offset-9 btn btn-default" name="proses" value="pengunjung_keluar">
-          <button type="submit" class="col-lg-offset-9 btn btn-danger">Keluar</button>
           </form>
         </div>
       </div>
@@ -162,7 +118,7 @@ include_once('database.php');
     // $query="select * from pengunjung";
     $query="SELECT idpeng,namap,a.nopendaftaran,k.kelas,masuk,keluar FROM anggota a,pengunjung p,kelas k where masuk is not null and a.idkelas=k.idkelas and a.nopendaftaran=p.nopendaftaran";
     $eksekusi=$db->query($query);
-    //while($data=$eksekusi->fetch(PDO::FETCH_ASSOC)){
+    //while($data=$eksekusi->fetch(PDO::FETCH_ASSOC))
     while($data=$eksekusi->fetch(PDO::FETCH_ASSOC)){
     ?>
     <tr>
@@ -181,9 +137,7 @@ include_once('database.php');
         </form>
       </td>
     </tr>
-    <?php
-    }
-    ?>
+<?php } ?>
     </tbody>
   </table>
   </div>
@@ -193,3 +147,26 @@ include_once('database.php');
 <script src="assets/vendor/datatables/jquery.dataTables.js"></script>
 <script src="assets/vendor/datatables/dataTables.bootstrap4.js"></script>
 <script src="assets/js/sb-admin.min.js"></script>
+
+<?php } if(isset($_GET['hal'])&&$_GET['hal']=='statistik'){?>
+  <div class="container">
+    <h2>Statistik Pengunjung</h2>
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-area-chart"></i>
+        </div>
+        <div class="card-block">
+            <canvas id="statistik" width="100%" height="30"></canvas>
+        </div>
+        <div class="card-footer small text-muted">
+            <!-- Updated yesterday at 11:59 PM -->
+        </div>
+    </div>
+  </div>
+  <!-- plugin -->
+  <script src="assets/datatables/jquery.dataTables.js"></script>
+  <script src="assets/jquery-easing/jquery.easing.min.js"></script>
+  <script src="assets/datatables/dataTables.bootstrap4.js"></script>
+  <script src="assets/vendor/chart.js/Chart.min.js"></script>
+  <script src="assets/js/statistik.js"></script>
+<?php } ?>
