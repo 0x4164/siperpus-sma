@@ -14,20 +14,35 @@
 <body>
   <div class="vertical-center">
     <div class="container" style="margin:auto;">
-	<fieldset>
 		<div class="row text-center" style="margin-bottom:10px">
 			<h1>SISTEM INFORMASI PERPUSTAKAAN</h1>
 			<h1>SMA NEGERI 1 BATU</h1>
 		</div>
 		<div class="row">
-		<div class="col-lg-4">
-			<h2>Pencarian Pustaka</h2>
-			<form class="form" action="aksi_pustaka.php" method="post">
-			  <input class="form-control" type="text" name="katakunci" value="">
-			  <input class="form-control" type="submit" name="proses" value="Cari">
-			</form>
-		</div>
-			<div id="loginbox" style="" class="mainbox col-md-4 col-md-offset-8  col-sm-8 col-sm-offset-8">	  <div class="panel panel-info">
+			<div class="col-lg-4">
+		    <div class="panel panel-default">
+		      <div class="panel-body">
+		    <form id="form-cari" class="form" action="pencarianpustaka.php" method="POST">
+		      <div class="form-group">
+		        <label for="keyword">Kata kunci</label><input type="text" class="form-control" name="keyword">
+		      </div>
+		      <div class="form-group">
+		      <select name="kategori" class="form-control">
+		      <option value="-">-- Cari Berdasarkan --</option>
+		       <option value="judul">Judul Buku</option>
+		       <option value="penulis">Nama Penulis</option>
+		       <option value="isbn">ISBN</option>
+		      </select>
+		      </div>
+		      <!-- <div class="form-group"> -->
+		      <input type="submit" class="form-control" value="Cari" name="cari"/>
+		    <!-- </div> -->
+		    </form>
+		    </div>
+		    </div>
+		  </div>
+			<fieldset>
+			<div id="loginbox" style="" class="mainbox col-lg-6 col-md-4 col-md-offset-6  col-sm-8 col-sm-offset-8">	  <div class="panel panel-info">
 					<div class="panel-heading">
 						<div class="panel-title">Sign In</div>
 						<div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Forgot password?</a></div>

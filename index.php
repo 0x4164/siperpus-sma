@@ -7,12 +7,13 @@
 	4. pengembalian
 	5. Laporan statistik pengunjung
 	*/
+	$page="index";
 session_start();
 //userdata
 $user = $_SESSION['username'];
 include ("head-html.php");
 ?>
-  <body>
+  <body style="padding-top:30px;">
 <?php
 	if(isset($_SESSION['username'])&&isset($_SESSION['password'])){
 		include ("navbar.php");

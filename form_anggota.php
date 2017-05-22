@@ -1,4 +1,6 @@
+<body style="padding-top:50px;">
 <?php
+$page="formanggota";
 //form anggota
 session_start();
 include("database.php");
@@ -32,37 +34,75 @@ if(isset($_GET['nopendaftaran']))
 ?>
 <div class="container">
 <div class="row">
-	<form name="form-pustaka" class="form" action="aksi_anggota.php" method="POST">
-		<label for="nopendaftaran">Nopendaftaran</label>
-		<input type="text" class="form-control" name="nopendaftaran" value="<?php if(isset($_GET['nopendaftaran'])){echo $nopendaftaran;} ?>" />
-		<label for="nama">Nama:</label>
-		<input type="text" class="form-control" name="nama" value="<?php if(isset($_GET['nopendaftaran'])){echo $nama;} ?>" />
-		<label for="alamat">Alamat:</label>
-		<input type="text" class="form-control" name="alamat" value="<?php if(isset($_GET['nopendaftaran'])){echo $alamat;} ?>" />
-		<label for="idprovinsi">idprovinsi:</label>
-		<input type="text" class="form-control" name="idprovinsi" value="<?php if(isset($_GET['nopendaftaran'])){echo $idprovinsi;} ?>" />
-		<label for="idkota">idkota:</label>
-		<input type="text" class="form-control" name="idkota" value="<?php if(isset($_GET['nopendaftaran'])){echo $idkota;} ?>" />
-		<label for="jeniskelamin">jeniskelamin:</label>
-		<input type="text" class="form-control" name="jeniskelamin" value="<?php if(isset($_GET['nopendaftaran'])){echo $jeniskelamin;} ?>" />
-		<label for="jeniskelamin">idkelas:</label>
-		<input type="text" class="form-control" name="idkelas" value="<?php if(isset($_GET['nopendaftaran'])){echo $idkelas;} ?>" />
-		<label for="tempatlahir">tempatlahir:</label>
-		<input type="text" class="form-control" name="tempatlahir" value="<?php if(isset($_GET['nopendaftaran'])){echo $tempatlahir;} ?>" />
-		<label for="tanggallahir">tanggallahir:</label>
-		<input type="text" class="form-control" name="tanggallahir" value="<?php if(isset($_GET['nopendaftaran'])){echo $tanggallahir;} ?>" />
-		<label for="notelepon">notelepon:</label>
-		<input type="text" class="form-control" name="notelepon" value="<?php if(isset($_GET['nopendaftaran'])){echo $notelepon;} ?>" />
-		<?php
-		if(isset($_GET['nopendaftaran'])){
-			echo '<input type="submit" name="proses" value="Update" />';
-		}else{
-			echo '<input type="submit" name="proses" value="Simpan" />';
-		}
-		?>
-	</form>
-</div>
-</div>
+	<div class="col-lg-6 col-sm-12">
+		<form name="form-pustaka" class="form form-horizontal" action="aksi_anggota.php" method="POST">
+			<div class="form-group"><label class="control-label col-sm-4" for="nopendaftaran">Nopendaftaran</label>
+				<div class="col-sm-4">
+				<input type="text" class="form-control" name="nopendaftaran" value="<?php if(isset($_GET['nopendaftaran'])){echo $nopendaftaran;} ?>" />
+				</div>
+			</div>
+			<div class="form-group"><label class="control-label col-sm-4" for="nama">Nama:</label>
+				<div class="col-sm-4">
+				<input type="text" class="form-control" name="nama" value="<?php if(isset($_GET['nopendaftaran'])){echo $nama;} ?>" />
+				</div>
+			</div>
+			<div class="form-group"><label class="control-label col-sm-4" for="alamat">Alamat:</label>
+				<div class="col-sm-4">
+				<input type="text" class="form-control" name="alamat" value="<?php if(isset($_GET['nopendaftaran'])){echo $alamat;} ?>" />
+				</div>
+			</div>
+			<div class="form-group"><label class="control-label col-sm-4" for="idprovinsi">idprovinsi:</label>
+				<div class="col-sm-4">
+				<input type="text" class="form-control" name="idprovinsi" value="<?php if(isset($_GET['nopendaftaran'])){echo $idprovinsi;} ?>" />
+				</div>
+			</div>
+			<div class="form-group"><label class="control-label col-sm-4" for="idkota">idkota:</label>
+				<div class="col-sm-4">
+				<input type="text" class="form-control" name="idkota" value="<?php if(isset($_GET['nopendaftaran'])){echo $idkota;} ?>" />
+				</div>
+			</div>
+			<div class="form-group"><label class="control-label col-sm-4" for="jeniskelamin">jeniskelamin:</label>
+				<div class="col-sm-4">
+				<input type="text" class="form-control" name="jeniskelamin" value="<?php if(isset($_GET['nopendaftaran'])){echo $jeniskelamin;} ?>" />
+				</div>
+			</div>
+			<div class="form-group"><label class="control-label col-sm-4" for="jeniskelamin">idkelas:</label>
+				<div class="col-sm-4">
+				<input type="text" class="form-control" name="idkelas" value="<?php if(isset($_GET['nopendaftaran'])){echo $idkelas;} ?>" />
+				</div>
+			</div>
+			<div class="form-group"><label class="control-label col-sm-4" for="tempatlahir">tempatlahir:</label>
+				<div class="col-sm-4">
+				<input type="text" class="form-control" name="tempatlahir" value="<?php if(isset($_GET['nopendaftaran'])){echo $tempatlahir;} ?>" />
+				</div>
+			</div>
+			<div class="form-group"><label class="control-label col-sm-4" for="tanggallahir">tanggallahir:</label>
+				<div class="col-sm-4">
+				<input type="text" class="form-control" name="tanggallahir" value="<?php if(isset($_GET['nopendaftaran'])){echo $tanggallahir;} ?>" />
+				</div>
+			</div>
+			<div class="form-group"><label class="control-label col-sm-4" for="notelepon">notelepon:</label>
+				<div class="col-sm-4">
+				<input type="text" class="form-control" name="notelepon" value="<?php if(isset($_GET['nopendaftaran'])){echo $notelepon;} ?>" />
+				</div>
+			</div>
+			<?php
+			if(isset($_GET['nopendaftaran'])){
+				echo '<input type="submit" name="proses" value="Update" />';
+			}else{
+				echo '<input type="submit" name="proses" value="Simpan" />';
+			}
+			?>
+		</form>
+
+				</div>
+			</div>
+
+				</div>
+			</div>
+
+				</div>
+			</div>
 <?php
 //include ("footer.php");
 ?>

@@ -1,4 +1,6 @@
+<body style="padding-top:50px;">
 <?php
+$page="formpustaka";
 session_start();
 include("database.php");
 include ("head-html.php");

@@ -1,4 +1,6 @@
+<body style="padding-top:50px;">
 <?php
+$page="transaksi";
 session_start();
 include ("head-html.php");
 ?>
