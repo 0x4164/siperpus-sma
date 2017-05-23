@@ -1,7 +1,8 @@
 <?php
 include("database.php");
+header('Content-Type: application/json');
 
-$keyword=$_POST['nop'];
+$keyword=$_GET['nop'];
 $query="select * from anggota where nopendaftaran like '%".$keyword."%'";
 $eksekusi=$db->query($query);
 $row_set = array();

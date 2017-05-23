@@ -1,9 +1,10 @@
 <body style="padding-top:50px;">
+
 <?php
 $page="formanggota";
 //form anggota
 session_start();
-include("database.php");
+include_once("database.php");
 include ("head-html.php");
 include ("navbar.php");
 
@@ -33,64 +34,80 @@ if(isset($_GET['nopendaftaran']))
 
 ?>
 <div class="container">
+	<h2>Tambah Data Anggota</h2>
 <div class="row">
-	<div class="col-lg-6 col-sm-12">
-		<form name="form-pustaka" class="form form-horizontal" action="aksi_anggota.php" method="POST">
+	<div class="col-lg-4 col-sm-12">
+		<form name="form-anggota" class="form form-horizontal" action="aksi_anggota.php" method="POST">
 			<div class="form-group"><label class="control-label col-sm-4" for="nopendaftaran">Nopendaftaran</label>
-				<div class="col-sm-4">
+				<div class="col-sm-8">
 				<input type="text" class="form-control" name="nopendaftaran" value="<?php if(isset($_GET['nopendaftaran'])){echo $nopendaftaran;} ?>" />
 				</div>
 			</div>
 			<div class="form-group"><label class="control-label col-sm-4" for="nama">Nama:</label>
-				<div class="col-sm-4">
+				<div class="col-sm-8">
 				<input type="text" class="form-control" name="nama" value="<?php if(isset($_GET['nopendaftaran'])){echo $nama;} ?>" />
 				</div>
 			</div>
 			<div class="form-group"><label class="control-label col-sm-4" for="alamat">Alamat:</label>
-				<div class="col-sm-4">
+				<div class="col-sm-8">
 				<input type="text" class="form-control" name="alamat" value="<?php if(isset($_GET['nopendaftaran'])){echo $alamat;} ?>" />
 				</div>
 			</div>
 			<div class="form-group"><label class="control-label col-sm-4" for="idprovinsi">idprovinsi:</label>
-				<div class="col-sm-4">
-				<input type="text" class="form-control" name="idprovinsi" value="<?php if(isset($_GET['nopendaftaran'])){echo $idprovinsi;} ?>" />
+				<div class="col-sm-8">
+				<input type="text" class="form-control" name="idprovinsi" value="<?php if(isset($_GET['nopendaftaran'])){echo $idprovinsi;} ?>" disabled="true"/>
+				<select class="form-control" name="sidprovinsi">
+					<?php
+					if(isset($_GET['nopendaftaran'])){
+						echo $idprovinsi;
+					}else{
+
+					$query="select * from provinsi";
+			    $eksekusi=$db->query($query);
+				    while($data=$eksekusi->fetch(PDO::FETCH_ASSOC)){?>
+				    	<option value="<?php echo $data['idprovinsi'];?>"><?php echo $data['idprovinsi']." ".$data['provinsi'];?></option>
+				    <?php
+						}
+			    }
+					?>
+				</select>
 				</div>
 			</div>
 			<div class="form-group"><label class="control-label col-sm-4" for="idkota">idkota:</label>
-				<div class="col-sm-4">
+				<div class="col-sm-8">
 				<input type="text" class="form-control" name="idkota" value="<?php if(isset($_GET['nopendaftaran'])){echo $idkota;} ?>" />
 				</div>
 			</div>
 			<div class="form-group"><label class="control-label col-sm-4" for="jeniskelamin">jeniskelamin:</label>
-				<div class="col-sm-4">
+				<div class="col-sm-8">
 				<input type="text" class="form-control" name="jeniskelamin" value="<?php if(isset($_GET['nopendaftaran'])){echo $jeniskelamin;} ?>" />
 				</div>
 			</div>
 			<div class="form-group"><label class="control-label col-sm-4" for="jeniskelamin">idkelas:</label>
-				<div class="col-sm-4">
+				<div class="col-sm-8">
 				<input type="text" class="form-control" name="idkelas" value="<?php if(isset($_GET['nopendaftaran'])){echo $idkelas;} ?>" />
 				</div>
 			</div>
 			<div class="form-group"><label class="control-label col-sm-4" for="tempatlahir">tempatlahir:</label>
-				<div class="col-sm-4">
+				<div class="col-sm-8">
 				<input type="text" class="form-control" name="tempatlahir" value="<?php if(isset($_GET['nopendaftaran'])){echo $tempatlahir;} ?>" />
 				</div>
 			</div>
 			<div class="form-group"><label class="control-label col-sm-4" for="tanggallahir">tanggallahir:</label>
-				<div class="col-sm-4">
+				<div class="col-sm-8">
 				<input type="text" class="form-control" name="tanggallahir" value="<?php if(isset($_GET['nopendaftaran'])){echo $tanggallahir;} ?>" />
 				</div>
 			</div>
 			<div class="form-group"><label class="control-label col-sm-4" for="notelepon">notelepon:</label>
-				<div class="col-sm-4">
+				<div class="col-sm-8">
 				<input type="text" class="form-control" name="notelepon" value="<?php if(isset($_GET['nopendaftaran'])){echo $notelepon;} ?>" />
 				</div>
 			</div>
 			<?php
 			if(isset($_GET['nopendaftaran'])){
-				echo '<input type="submit" name="proses" value="Update" />';
+				echo '<input type="submit" class="form-control col-sm-3 btn btn-success" name="proses" value="Update"/>';
 			}else{
-				echo '<input type="submit" name="proses" value="Simpan" />';
+				echo '<input type="submit" class="form-control col-sm-3 btn btn-success" name="proses" value="Simpan"/>';
 			}
 			?>
 		</form>

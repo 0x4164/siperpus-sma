@@ -1,3 +1,4 @@
+<body onload="startTime()" style="padding-top:50px;">
 <?php
 
 $page="beranda";
@@ -9,22 +10,44 @@ if(!isset($_GET['hal'])){
 ?>
 <!-- <h1 class="text-center">== Beranda == Pengunjung ==</h1> -->
 <!-- <div class="container-fluid row"> -->
-<body onload="startTime()">
   <script async type="text/javascript">
   /*autocomplete muncul setelah user mengetikan minimal2 karakter */
     $(document).ready(function() {
+        // $("#nodaftar").autocomplete({
+        //   source: "autoanggota.php",
+        //   minLength:2
+        // });
+        // $('#country_name').autocomplete({
         $("#nodaftar").autocomplete({
-          source: "autoanggota.php",
-          minLength:2
-        });
+		      	source: function( request, response ) {
+		      		$.ajax({
+		      			url : 'autoanggota.php',
+		      			dataType: "json",
+						data: {
+						   nop: request.term,
+						   type: 'nodaftar'
+						},
+						 success: function( data ) {
+							 response( $.map( data, function( item ) {
+								return {
+									label: item,
+									value: item
+								}
+							}));
+						}
+		      		});
+		      	},
+		      	autoFocus: true,
+		      	minLength: 3
+		    });
     });
   </script>
 <div class="row">
   <div class="col-lg-5">
-    <h3>Pengunjung </h3>
+    <h2>Pengunjung
+    <h5><a href="index.php?hal=statistik">Statistik Pengunjung</a></h5></h2>
   </div>
   <div class="col-lg-5">
-    <h5><a href="index.php?hal=statistik">Statistik Pengunjung</a></h5>
   </div>
   <div class="col-lg-2">
     <h5 id="waktu"></h5>
@@ -35,16 +58,16 @@ if(!isset($_GET['hal'])){
   <div class="col-lg-4">
     <div class="panel panel-default">
       <ul class="nav nav-tabs">
-        <li ><a data-toggle="tab" href="#pmasuk">Pengunjung Masuk</a></li>
-        <li class="active"><a data-toggle="tab" href="#tamu">Tamu</a></li>
+        <li class="active"><a data-toggle="tab" href="#pmasuk">Pengunjung Masuk</a></li>
+        <li ><a data-toggle="tab" href="#tamu">Tamu</a></li>
       </ul>
       <div class="tab-content">
-        <div id="pmasuk" class="tab-pane panel-body">
+        <div id="pmasuk" class="tab-pane in active panel-body">
           <?php //echo form_open('aplikasi/proses_pengunjung_masuk','class="form-horizontal"')?>
-          <form role="form" action="pengunjung.php" method="post">
+          <form role="form" class="form form-horizontal" action="pengunjung.php" method="post">
           <div class="form-group"><!--ui-widget-->
-            <label class="control-label" for="nama">No Daftar:</label>
-            <div class="ui-widget">
+            <label class="control-label col-sm-4" for="nama">No Daftar:</label>
+            <div class="ui-widget col-sm-8">
               <input type="text" id="nodaftar" class="form-control" name="nop" value="">
             </div>
             <!-- <select name="nop" class="form-control" id="sel1">
@@ -61,12 +84,14 @@ if(!isset($_GET['hal'])){
           <button type="submit" class="col-lg-offset-9 btn btn-success">Masuk</button>
           </form>
         </div>
-        <div id="tamu" class="tab-pane in active panel-body">
+        <div id="tamu" class="tab-pane panel-body">
           <?php //echo form_open('aplikasi/proses_pengunjung_masuk','class="form-horizontal"')?>
-          <form role="form" action="pengunjung.php" method="post">
+          <form role="form" class="form form-horizontal" action="pengunjung.php" method="post">
           <div class="form-group">
-            <label class="control-label" for="nama">Nama Tamu:</label>
-            <input type="text" class="form-control" name="namap" value="">
+            <label class="control-label col-sm-4" for="nama">Nama Tamu:</label>
+            <div class="ui-widget col-sm-8">
+              <input type="text" class="form-control" name="namap" value="">
+            </div>
             <input type="hidden" name="proses" value="pengunjung_masuk_b">
           </div>
           <button type="submit" class="col-lg-offset-9 btn btn-success">Masuk</button>
@@ -151,7 +176,33 @@ if(!isset($_GET['hal'])){
 <?php } if(isset($_GET['hal'])&&$_GET['hal']=='statistik'){?>
   <div class="container">
     <h2>Statistik Pengunjung</h2>
-    <div class="card mb-3">
+    <label for="">Umum</label>
+    <div class="row">
+      <div class="col-lg-4">
+      <?php
+      include_once ("database.php");
+      $query="SELECT date(masuk) as tanggal,COUNT(*) as jumlahpengunjung FROM `pengunjung` GROUP by tanggal order by jumlahpengunjung desc limit 1";
+      $eksekusi=$db->query($query);
+      $data=$eksekusi->fetch(PDO::FETCH_ASSOC);
+      echo "Max == ".$data['tanggal']." @ ".$data['jumlahpengunjung']."<br>";
+      $query="SELECT date(masuk) as tanggal,COUNT(*) as jumlahpengunjung FROM `pengunjung` GROUP by tanggal order by jumlahpengunjung asc limit 1";
+      $eksekusi=$db->query($query);
+      $data=$eksekusi->fetch(PDO::FETCH_ASSOC);
+      echo "Min == ".$data['tanggal']." @ ".$data['jumlahpengunjung'];
+
+      //while($data=$eksekusi->fetch(PDO::FETCH_ASSOC))
+      // while($data=$eksekusi->fetch(PDO::FETCH_ASSOC)){
+      //   echo "Max == ".$data['tanggal']." @ ".$data['jumlahpengunjung']."<br>";
+      // }
+      //while($data=$eksekusi->fetch(PDO::FETCH_ASSOC))
+      ?>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4">
+        <label for="">Grafik</label>
+      </div>
+      <div class="card mb-3">
         <div class="card-header">
             <i class="fa fa-area-chart"></i>
         </div>
@@ -161,6 +212,7 @@ if(!isset($_GET['hal'])){
         <div class="card-footer small text-muted">
             <!-- Updated yesterday at 11:59 PM -->
         </div>
+      </div>
     </div>
   </div>
   <!-- plugin -->

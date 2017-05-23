@@ -1,4 +1,6 @@
-
+/*
+ statistik ajax 
+*/
 $(document).ready(function(){
   $.ajax({
     url:"statistikp.php",

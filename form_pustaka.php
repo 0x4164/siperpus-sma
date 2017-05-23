@@ -1,4 +1,5 @@
 <body style="padding-top:50px;">
+
 <?php
 $page="formpustaka";
 session_start();
@@ -22,35 +23,39 @@ if(isset($_GET['id']))
 
 ?>
 <div class="container">
-<form name="form-pustaka" action="aksi_pustaka.php" method="POST">
-<table>
-<tr>
-	<td>Judul:</td>
-	<input type="hidden" name="id" value="<?php if(isset($_GET['id'])){echo $id;} ?>" />
-	<td><input type="text" size="50" name="judul" value="<?php if(isset($_GET['id'])){echo $judul;} ?>" /></td>
-</tr>
-<tr>
-	<td>Penulis:</td>
-	<td><input type="text" size="25" name="penulis" value="<?php if(isset($_GET['id'])){echo $penulis;} ?>" /></td>
-</tr>
-<tr>
-	<td>ISBN:</td>
-	<td><input type="text" name="isbn" size="15" value="<?php if(isset($_GET['id'])){echo $isbn;} ?>" /></td>
-</tr>
-<tr>
-	<td colspan="2">
+	<h2>Tambah Data Pustaka</h2>
+<div class="row">
+	<div class="col-lg-4 col-sm-12">
+	<form name="form-pustaka" class="form form-horizontal" action="aksi_pustaka.php" method="POST">
+	<div class="form-group">
+		<label class="control-label col-sm-3">Judul:</label>
+		<input type="hidden" name="id" value="<?php if(isset($_GET['id'])){echo $id;} ?>" />
+		<div class="col-sm-9">
+			<input type="text" class="form-control" name="judul" value="<?php if(isset($_GET['id'])){echo $judul;} ?>" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-3">Penulis:</label>
+		<div class="col-sm-9"><input type="text" class="form-control"  size="25" name="penulis" value="<?php if(isset($_GET['id'])){echo $penulis;} ?>" /></div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-3">ISBN:</label>
+		<div class="col-sm-9"><input type="text" class="form-control"  name="isbn" size="15" value="<?php if(isset($_GET['id'])){echo $isbn;} ?>" /></div>
+	</div>
+	<div class="form-group">
 
-	<?php
-		if(isset($_GET['id'])){
-			echo '<input type="submit" name="proses" value="Update" />';
-		}else{
-			echo '<input type="submit" name="proses" value="Simpan" />';
-		}
-	?>
-	</td>
-</tr>
-</table>
-</form>
+		<?php
+			if(isset($_GET['id'])){
+				echo '<input type="submit" class="form-control col-sm-3 btn btn-success" name="proses" value="Update"/>';
+			}else{
+				echo '<input type="submit" class="form-control col-sm-3 btn btn-success" name="proses" value="Simpan"/>';
+			}
+		?>
+	</div>
+	</table>
+	</form>
+		</div>
+	</div>
 </div>
 <?php
 //include ("footer.php");

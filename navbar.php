@@ -30,12 +30,15 @@ if(isset($_SESSION['username'])&&isset($_SESSION['password'])){
 <?php
 }else{
 ?>
-<nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="5">
+<nav class="navbar navbar-inverse navbar-fixed-top" style="">
     <div class="navbar-header">
     <a class="navbar-brand" href="home">SIP</a>
     </div>
     <ul class="nav navbar-nav navbar-left">
       <li class=""><a href="pencarianpustaka.php">Pencarian Pustaka</a></li>
+    </ul>
+    <ul class="nav navbar-nav pull-right">
+      <li class=""><a href="login.php">Login</a></li>
     </ul>
 </nav>
 <?php

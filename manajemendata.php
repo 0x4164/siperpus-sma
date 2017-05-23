@@ -20,7 +20,7 @@ if(isset($_SESSION['username'])&&isset($_SESSION['password'])){
   }else if(isset($_GET['hal'])&&$_GET['hal']=='pustaka'){
 ?>
 <div class="container">
-  <h2>Manajemen Data</h2>
+  <h2>Manajemen Data Pustaka</h2>
   <a href="form_pustaka.php">Tambah Pustaka</a>
   <!-- <table width="513" border="0" align="center" class="table table-bordered">
   <tr bgcolor="#FFFFCC">
@@ -39,22 +39,24 @@ if(isset($_SESSION['username'])&&isset($_SESSION['password'])){
         <table class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
           <thead>
             <!-- <tr bgcolor="#FFFFCC"> -->
-            <th>
-            	<td>no</td>
-            	<td>judul</td>
-            	<td>penulis</td>
-            	<td>isbn</td>
-            	<td>isbn</td>
-            </th>
+            <tr>
+            	<th>no</th>
+            	<th>judul</th>
+            	<th>penulis</th>
+            	<th>isbn</th>
+            	<th>.</th>
+            	<th>.</th>
+            </tr>
           </thead>
           <tfoot>
-            <th>
-            	<td>no</td>
-            	<td>judul</td>
-            	<td>penulis</td>
-            	<td>isbn</td>
-            	<td>isbn</td>
-            </th>
+            <tr>
+            	<th>no</th>
+            	<th>judul</th>
+            	<th>penulis</th>
+            	<th>isbn</th>
+              <th>.</th>
+            	<th>.</th>
+            </try>
           </tfoot>
           <tbody>
     <?php
@@ -87,8 +89,8 @@ if(isset($_SESSION['username'])&&isset($_SESSION['password'])){
 <?php
   }else if(isset($_GET['hal'])&&$_GET['hal']=='anggota'){
 ?>
-<!-- <div class="container"> -->
-  <h2>Manajemen Data</h2>
+<div class="container">
+  <h2>Manajemen Data Anggota</h2>
     <a href="form_anggota.php">Tambah Anggota</a>
     <!-- <table width="513" border="0" align="center" class="table table-bordered">
     <tr bgcolor="#FFFFCC">
@@ -168,7 +170,7 @@ if(isset($_SESSION['username'])&&isset($_SESSION['password'])){
       </div>
     </div>
   </div>
-<!-- </div> -->
+</div>
 <script src="assets/vendor/datatables/jquery.dataTables.js"></script>
 <script src="assets/vendor/datatables/dataTables.bootstrap4.js"></script>
 <script src="assets/js/sb-admin.min.js"></script>

@@ -77,5 +77,5 @@
 	</style>
 <?php if ($page=="statistik"){?>
 	<script src="assets/chart.js/Chart.min.js"></script>
-<?php } ?>
+<?php }?>
 </head>

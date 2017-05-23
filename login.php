@@ -22,20 +22,27 @@
 			<div class="col-lg-4">
 		    <div class="panel panel-default">
 		      <div class="panel-body">
-		    <form id="form-cari" class="form" action="pencarianpustaka.php" method="POST">
+		    <form id="form-cari" class="form form-horizontal" action="pencarianpustaka.php" method="POST">
 		      <div class="form-group">
-		        <label for="keyword">Kata kunci</label><input type="text" class="form-control" name="keyword">
+		        <label for="keyword" class="control-label col-sm-4">Kata kunci</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" name="keyword">
+		      	</div>
 		      </div>
 		      <div class="form-group">
-		      <select name="kategori" class="form-control">
-		      <option value="-">-- Cari Berdasarkan --</option>
-		       <option value="judul">Judul Buku</option>
-		       <option value="penulis">Nama Penulis</option>
-		       <option value="isbn">ISBN</option>
-		      </select>
+						<div class="col-lg-4 col-sm-12">
+						</div>
+						<div class="col-lg-8 col-sm-12">
+			      <select name="kategori" class="form-control">
+			      <option value="-">-- Cari Berdasarkan --</option>
+			       <option value="judul">Judul Buku</option>
+			       <option value="penulis">Nama Penulis</option>
+			       <option value="isbn">ISBN</option>
+			      </select>
+						</div>
 		      </div>
 		      <!-- <div class="form-group"> -->
-		      <input type="submit" class="form-control" value="Cari" name="cari"/>
+		      <input type="submit" class="form-control col-sm-offset-10" value="Cari" name="cari"/>
 		    <!-- </div> -->
 		    </form>
 		    </div>

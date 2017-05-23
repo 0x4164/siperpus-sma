@@ -10,11 +10,7 @@ if(isset($_SESSION['username'])&&isset($_SESSION['password'])){
 <div class="container">
   <h2>Transaksi</h2>
 </div>
-<div id="main-view">
-
-</div>
-<div id="cart-view">
-	
+<div id="main-view" class="row">
 </div>
 <?php
 }else{
@@ -24,5 +20,6 @@ if(isset($_SESSION['username'])&&isset($_SESSION['password'])){
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#main-view").load("pengembalian.php");
+	// $("#main-view").load("peminjaman.php");
 });
 </script>
