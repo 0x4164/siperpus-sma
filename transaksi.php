@@ -3,17 +3,26 @@
 $page="transaksi";
 session_start();
 include ("head-html.php");
-?>
-<body>
-<?php
 if(isset($_SESSION['username'])&&isset($_SESSION['password'])){
   include ("navbar.php");
+  include_once ("database.php");
 ?>
 <div class="container">
   <h2>Transaksi</h2>
+</div>
+<div id="main-view">
+
+</div>
+<div id="cart-view">
+	
 </div>
 <?php
 }else{
 	header('location:login.php');
 }
 ?>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#main-view").load("pengembalian.php");
+});
+</script>
